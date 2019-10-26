@@ -1,4 +1,3 @@
-from __future__ import print_function
 import argparse
 from tqdm import tqdm
 import os
@@ -9,7 +8,7 @@ from torch.autograd import Variable
 import torch.nn.functional as F
 import torchvision.datasets as datasets
 
-from data import initialize_data # data.py in the same folder
+from data import initialize_data  # data.py in the same folder
 from model import Net
 
 parser = argparse.ArgumentParser(description='PyTorch GTSRB evaluation script')
@@ -30,6 +29,7 @@ model.eval()
 from data import data_transforms
 
 test_dir = args.data + '/test_images'
+
 
 def pil_loader(path):
     # open path as file to avoid ResourceWarning (https://github.com/python-pillow/Pillow/issues/835)
@@ -54,7 +54,4 @@ for f in tqdm(os.listdir(test_dir)):
 output_file.close()
 
 print("Succesfully wrote " + args.outfile + ', you can upload this file to the kaggle '
-      'competition at https://www.kaggle.com/c/nyu-cv-fall-2018/')
-        
-
-
+                                            'competition at https://www.kaggle.com/c/nyu-cv-fall-2018/')
