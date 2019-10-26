@@ -1,0 +1,11 @@
+*~
+data
+*.pyc
+*.pth
+*.csv
+.idea/.gitignore
+.idea/hw2.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
