@@ -14,6 +14,7 @@ data_transforms = transforms.Compose([
 ])
 
 
+# todo: file org changed
 def initialize_data(folder):
     train_zip = folder + '/train_images.zip'
     test_zip = folder + '/test_images.zip'
@@ -35,6 +36,7 @@ def initialize_data(folder):
         zip_ref.extractall(folder)
         zip_ref.close()
 
+    # todo: not good val set
     # make validation_data by using images 00000*, 00001* and 00002* in each class
     val_folder = folder + '/val_images'
     if not os.path.isdir(val_folder):

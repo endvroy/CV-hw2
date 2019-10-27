@@ -46,9 +46,12 @@ from model import Net
 
 model = Net()
 
+# todo: use adam
 optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 
 
+# todo: take optim as param
+# todo: usew cuda
 def train(epoch):
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
@@ -64,6 +67,7 @@ def train(epoch):
                        100. * batch_idx / len(train_loader), loss.data[0]))
 
 
+# todo: take model as param
 def validation():
     model.eval()
     validation_loss = 0
@@ -73,7 +77,7 @@ def validation():
         output = model(data)
         validation_loss += F.nll_loss(output, target, size_average=False).data[0]  # sum up batch loss
         pred = output.data.max(1, keepdim=True)[1]  # get the index of the max log-probability
-        correct += pred.eq(target.data.view_as(pred)).cpu().sum()
+        correct += pred.eq(target.data.view_as(pred)).cFpu().sum()
 
     validation_loss /= len(val_loader.dataset)
     print('\nValidation set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
