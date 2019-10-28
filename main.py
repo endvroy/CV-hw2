@@ -12,9 +12,9 @@ params = {
     'batch_size': 256,
     'lr': 1e-3,
     'momentum': 1e-2,
-    'log_interval': 10,
-    'epoches': 12,
-    'checkpoint_path': 'checkpoints/1'
+    'log_interval': 5,
+    'epoches': 15,
+    'checkpoint_path': 'checkpoints/stn1'
 }
 
 
@@ -162,5 +162,4 @@ def main():
 
 
 if __name__ == '__main__':
-    state = load_state('checkpoints/1/epoch_20.pth')
-    train_logger = load_train_logger(state)
+    main()
