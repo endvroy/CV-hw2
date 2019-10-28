@@ -1,5 +1,7 @@
 import os
 import random
+import zipfile
+import shutil
 from tqdm import tqdm
 
 
@@ -34,7 +36,20 @@ def make_val_ds(data_path, val_ratio=0.2):
                           os.path.join(val_cat_path, val_fname))
 
 
+def unzip(zip_path, data_path):
+    os.makedirs(data_path, exist_ok=True)
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(data_path)
+
+
+def remove_ds(data_path):
+    shutil.rmtree(data_path)
+
+
 if __name__ == '__main__':
+    zip_path = 'data/nyucvfall2019.zip'
     data_path = 'data/nyucvfall2019'
-    # reorg_ds_path(data_path)
-    make_val_ds(data_path)
+    remove_ds(data_path)
+    unzip(zip_path, data_path)
+    reorg_ds_path(data_path)
+    make_val_ds(data_path, val_ratio=0.1)
