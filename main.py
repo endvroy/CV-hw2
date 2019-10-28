@@ -11,10 +11,9 @@ params = {
     'data_path': 'data/nyucvfall2019',
     'batch_size': 256,
     'lr': 1e-3,
-    'momentum': 1e-2,
     'log_interval': 5,
-    'epoches': 15,
-    'checkpoint_path': 'checkpoints/stn1'
+    'epoches': 20,
+    'checkpoint_path': 'checkpoints/stn5'
 }
 
 
