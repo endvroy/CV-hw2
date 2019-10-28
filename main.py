@@ -13,7 +13,7 @@ params = {
     'lr': 1e-3,
     'momentum': 1e-2,
     'log_interval': 10,
-    'epoches': 20
+    'epoches': 12
 }
 
 
@@ -131,6 +131,6 @@ if __name__ == '__main__':
     epoch = 0
     epoches_to_train = params['epoches']
     train_logger = TrainLogger()
-    epoch, train_logger = load_checkpoint(model, optimizer, 'checkpoints/1/epoch_3.pth')
-    epoches_to_train = 10
+    # epoch, train_logger = load_checkpoint(model, optimizer, 'checkpoints/1/epoch_3.pth')
+    # epoches_to_train = 10
     train(model, optimizer, epoch, epoches_to_train, 'checkpoints/1', train_logger)
