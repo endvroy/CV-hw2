@@ -43,7 +43,10 @@ def unzip(zip_path, data_path):
 
 
 def remove_ds(data_path):
-    shutil.rmtree(data_path)
+    try:
+        shutil.rmtree(data_path)
+    except:
+        pass
 
 
 if __name__ == '__main__':
