@@ -13,7 +13,8 @@ params = {
     'lr': 1e-3,
     'momentum': 1e-2,
     'log_interval': 10,
-    'epoches': 12
+    'epoches': 12,
+    'checkpoint_path': 'checkpoints/1'
 }
 
 
@@ -104,15 +105,39 @@ def save_checkpoint(model, optimizer, checkpoint_path, epoch, train_logger):
     print(f'checkpoint saved to {fpath}')
 
 
+def load_state(checkpoint_path):
+    state = torch.load(checkpoint_path)
+    return state
+
+
+def load_model(model, state):
+    model.load_state_dict(state['model'])
+
+
+def load_optimizer(optimizer, state):
+    optimizer.load_state_dict(state['optimizer'])
+
+
+def load_train_logger(state):
+    train_logger = TrainLogger()
+    train_logger.load_state_dict(state['train_logger'])
+    return train_logger
+
+
+def load_epoch(state):
+    return state['epoch']
+
+
 def load_checkpoint(model, optimizer, checkpoint_path):
     state = torch.load(checkpoint_path)
     model.load_state_dict(state['model'])
     optimizer.load_state_dict(state['optimizer'])
+    train_logger = TrainLogger()
     train_logger.load_state_dict(state['train_logger'])
     return state['epoch'], train_logger
 
 
-def train(model, optimizer, epoch, epoches_to_train, save_path, train_logger):
+def train(model, optimizer, epoch, epoches_to_train, train_loader, val_loader, save_path, train_logger):
     for epoch_i in range(1, epoches_to_train + 1):
         train_epoch(model, optimizer, train_loader, epoch + epoch_i, train_logger)
         validate(model, val_loader, epoch + epoch_i, train_logger)
@@ -120,7 +145,7 @@ def train(model, optimizer, epoch, epoches_to_train, save_path, train_logger):
         print('')
 
 
-if __name__ == '__main__':
+def main():
     train_loader = data_loader.load_train(params['data_path'], params['batch_size'])
     val_loader = data_loader.load_val(params['data_path'], params['batch_size'])
     print('train and val data loaded')
@@ -133,4 +158,9 @@ if __name__ == '__main__':
     train_logger = TrainLogger()
     # epoch, train_logger = load_checkpoint(model, optimizer, 'checkpoints/1/epoch_3.pth')
     # epoches_to_train = 10
-    train(model, optimizer, epoch, epoches_to_train, 'checkpoints/1', train_logger)
+    train(model, optimizer, epoch, epoches_to_train, train_loader, val_loader, params['checkpoint_path'], train_logger)
+
+
+if __name__ == '__main__':
+    state = load_state('checkpoints/1/epoch_20.pth')
+    train_logger = load_train_logger(state)
