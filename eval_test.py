@@ -41,4 +41,4 @@ def do_test(checkpoint_path, data_path, out_path):
 
 
 if __name__ == '__main__':
-    do_test('checkpoints/1/epoch_3.pth', 'data/nyucvfall2019', 'submission.csv')
+    do_test('checkpoints/1/epoch_19.pth', 'data/nyucvfall2019', 'submission.csv')
