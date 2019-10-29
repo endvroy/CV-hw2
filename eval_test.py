@@ -4,11 +4,12 @@ import PIL.Image as Image
 from tqdm import tqdm
 from model import Net
 from data_loader import transform
+from utils import load_state, load_model as ld_model
 
 
 def load_model(model, checkpoint_path):
-    state = torch.load(checkpoint_path)
-    model.load_state_dict(state['model'])
+    state = load_state(checkpoint_path)
+    ld_model(model, state)
 
 
 def pil_loader(path):
@@ -41,4 +42,4 @@ def do_test(checkpoint_path, data_path, out_path):
 
 
 if __name__ == '__main__':
-    do_test('checkpoints/stn4/epoch_15.pth', 'data/nyucvfall2019', 'submission.csv')
+    do_test('checkpoints/stn6/epoch_20.pth', 'data/nyucvfall2019', 'submission.csv')
