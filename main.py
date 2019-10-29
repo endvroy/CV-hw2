@@ -11,7 +11,7 @@ params = {
     'lr': 1e-3,
     'log_interval': 5,
     'epoches': 20,
-    'checkpoint_path': 'checkpoints/stn6'
+    'checkpoint_path': 'checkpoints/stn7'
 }
 
 

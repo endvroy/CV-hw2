@@ -12,8 +12,8 @@ class STN(nn.Module):
         self.pool1 = nn.MaxPool2d(2)
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.pool2 = nn.MaxPool2d(2)
-        self.fc1 = nn.Linear(320, 32)
-        self.fc2 = nn.Linear(32, 3 * 2)
+        self.fc1 = nn.Linear(320, 50)
+        self.fc2 = nn.Linear(50, 3 * 2)
 
         # Initialize the weights/bias with identity transformation
         self.fc2.weight.data.zero_()
@@ -47,8 +47,8 @@ class Net(nn.Module):
         self.conv2 = nn.Conv2d(10, 20, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
         self.pool2 = nn.MaxPool2d(2)
-        self.fc1 = nn.Linear(500, 50)
-        self.fc2 = nn.Linear(50, nclasses)
+        self.fc1 = nn.Linear(500, 200)
+        self.fc2 = nn.Linear(200, nclasses)
 
     def forward(self, x):
         x = self.stn1(x)
